@@ -9,13 +9,13 @@ export default function HowItWorks() {
     },
     {
       number: "02",
-      title: "Send crypto",
-      desc: "Choose BTC, USDT (TRC-20), or SOL. Send any amount to the address shown at checkout.",
+      title: "Choose how to pay",
+      desc: "Bitcoin, USDT on Tron, or Solana. You'll see a deposit address at checkout.",
     },
     {
       number: "03",
-      title: "Receive at launch",
-      desc: "Your $MRSC balance appears instantly. On January 1, tokens unlock and trading opens.",
+      title: "Get your tokens",
+      desc: "Your balance appears right away. On January 1, tokens unlock and become transferable.",
     },
   ];
 

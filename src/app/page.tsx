@@ -25,20 +25,17 @@ export default function HomePage() {
             <span className="text-sm font-semibold">MarsChain</span>
           </Link>
           <div className="hidden md:flex items-center gap-8 text-sm text-white/60">
-            <a href="#mission" className="hover:text-white transition">
-              Mission
+            <a href="#thesis" className="hover:text-white transition">
+              Thesis
             </a>
-            <a href="#how" className="hover:text-white transition">
-              How it works
+            <a href="#supply" className="hover:text-white transition">
+              Supply
             </a>
-            <a href="#tokenomics" className="hover:text-white transition">
-              Tokenomics
+            <a href="#sequence" className="hover:text-white transition">
+              Sequence
             </a>
-            <a href="#roadmap" className="hover:text-white transition">
-              Roadmap
-            </a>
-            <a href="#faq" className="hover:text-white transition">
-              FAQ
+            <a href="#questions" className="hover:text-white transition">
+              Questions
             </a>
           </div>
           <div className="flex items-center gap-2 sm:gap-3">
@@ -52,7 +49,7 @@ export default function HomePage() {
               href="/register"
               className="text-xs sm:text-sm px-3 sm:px-4 py-2 rounded-lg bg-orange-600 hover:bg-orange-500 text-white font-medium transition"
             >
-              Buy $MRSC
+              Sign up
             </Link>
           </div>
         </div>
@@ -63,21 +60,22 @@ export default function HomePage() {
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-orange-500/30 bg-orange-500/5 text-xs text-orange-400 mb-8 fade-up">
             <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse" />
-            Presale live · $1.00 per $MRSC
+            Private allocation · $1.00 per $MRSC
           </div>
 
           <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-semibold tracking-tight leading-[0.95] fade-up fade-up-delay-1">
-            Beyond
+            The next
             <br />
             <span className="bg-gradient-to-r from-orange-500 via-orange-400 to-amber-300 bg-clip-text text-transparent">
-              Bitcoin.
+              settlement layer.
             </span>
           </h1>
 
           <p className="text-white/50 text-base sm:text-lg md:text-xl mt-8 max-w-2xl mx-auto leading-relaxed fade-up fade-up-delay-2">
-            Bitcoin proved decentralized money works. MarsChain is
-            engineered for what comes next. Built for speed, for scale,
-            and for the next century of human settlement.
+            Bitcoin settled the question of whether decentralized value
+            can work. MarsChain answers the question that follows. An
+            architecture engineered for the throughput, programmability,
+            and scale the coming decade will demand.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-12 fade-up fade-up-delay-3">
@@ -88,10 +86,10 @@ export default function HomePage() {
               Buy $MRSC Now
             </Link>
             <a
-              href="#mission"
+              href="#thesis"
               className="w-full sm:w-auto px-8 py-4 rounded-xl border border-white/10 hover:border-white/20 text-white/80 font-medium transition text-center"
             >
-              Read the mission
+              Read the thesis
             </a>
           </div>
 
@@ -110,37 +108,43 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* MISSION */}
+      {/* THESIS / MISSION */}
       <section
-        id="mission"
+        id="thesis"
         className="py-20 sm:py-32 px-4 sm:px-6 border-t border-white/5"
       >
         <div className="max-w-5xl mx-auto">
           <div className="max-w-2xl mb-12 sm:mb-16">
             <div className="text-xs text-orange-500 uppercase tracking-wider mb-3">
-              The Mission
+              The thesis
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight leading-tight">
-              Bitcoin started it.
+              Not a competitor to Bitcoin.
               <br />
-              MarsChain finishes it.
+              A consequence of it.
             </h2>
+            <p className="text-white/50 mt-6 text-sm sm:text-base leading-relaxed">
+              Bitcoin demonstrated that scarcity can exist without an
+              issuer. What it did not attempt was the harder problem: what
+              happens when that scarcity is coupled with programmable
+              settlement, at the scale of a global economy.
+            </p>
           </div>
 
           <SectionReveal>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[
                 {
-                  title: "Speed",
-                  desc: "Bitcoin settles in minutes. MarsChain is designed for instant finality. Transactions confirm before you blink.",
+                  title: "Settlement",
+                  desc: "Finality measured in seconds. Security without architectural compromise. A base layer suitable for institutional and retail flow alike.",
                 },
                 {
-                  title: "Scale",
-                  desc: "Bitcoin handles a handful of transactions per second. MarsChain is engineered for the throughput of a global economy.",
+                  title: "Computation",
+                  desc: "A native execution environment for on-chain applications. Not bolted on, not layered above. Part of the protocol itself.",
                 },
                 {
-                  title: "Sovereignty",
-                  desc: "Not just digital gold. A full ecosystem with decentralized applications, smart contracts, and real utility.",
+                  title: "Scarcity",
+                  desc: "Twenty million tokens. Issued once. Never again. A monetary policy that cannot be renegotiated by any party.",
                 },
               ].map((p) => (
                 <div key={p.title} className="glass rounded-2xl p-7">
@@ -157,7 +161,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* HOW IT WORKS */}
+      {/* MECHANICS / HOW IT WORKS */}
       <HowItWorks />
 
       {/* COMPARISON */}
@@ -165,26 +169,30 @@ export default function HomePage() {
         <div className="max-w-5xl mx-auto">
           <div className="max-w-2xl mb-12">
             <div className="text-xs text-orange-500 uppercase tracking-wider mb-3">
-              Comparison
+              Architecture
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight">
-              MarsChain vs Bitcoin
+              Two systems. Different constraints.
             </h2>
+            <p className="text-white/50 mt-4 text-sm sm:text-base leading-relaxed">
+              Bitcoin optimized for certainty. MarsChain optimizes for
+              what the next decade will require.
+            </p>
           </div>
 
           <SectionReveal>
             <div className="glass rounded-2xl overflow-hidden">
               <div className="grid grid-cols-3 px-4 sm:px-6 py-4 border-b border-white/5 text-xs uppercase tracking-wider text-white/40">
-                <div>Feature</div>
+                <div>Attribute</div>
                 <div>Bitcoin</div>
                 <div className="text-orange-500">MarsChain</div>
               </div>
               {[
-                ["Launch", "2009", "2027"],
+                ["Settlement", "Approx. 10 minutes", "Near-instant"],
                 ["Supply", "21,000,000", "20,000,000"],
-                ["Block time", "About 10 min", "Instant"],
-                ["Smart contracts", "Limited", "Native"],
-                ["Purpose", "Digital gold", "Beyond Bitcoin"],
+                ["Execution", "Limited scripting", "Native computation"],
+                ["Purpose", "Store of value", "Settlement + computation"],
+                ["Status", "Live since 2009", "Private allocation"],
               ].map(([feature, btc, mrs]) => (
                 <div
                   key={feature}
@@ -200,22 +208,23 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* TOKENOMICS */}
+      {/* SUPPLY / TOKENOMICS */}
       <section
-        id="tokenomics"
+        id="supply"
         className="py-20 sm:py-32 px-4 sm:px-6 border-t border-white/5"
       >
         <div className="max-w-5xl mx-auto">
           <div className="max-w-2xl mb-12">
             <div className="text-xs text-orange-500 uppercase tracking-wider mb-3">
-              Tokenomics
+              Supply
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight">
-              20 million. No more.
+              Twenty million. Immutable.
             </h2>
-            <p className="text-white/50 mt-4">
-              A fixed supply. A clear distribution. No inflation, no
-              surprises.
+            <p className="text-white/50 mt-4 text-sm sm:text-base leading-relaxed">
+              The supply was determined at genesis. It cannot be
+              increased, decreased, or renegotiated. What exists is what
+              will always exist.
             </p>
           </div>
 
@@ -224,15 +233,15 @@ export default function HomePage() {
               <div className="glass rounded-2xl p-5 sm:p-7">
                 <div className="space-y-4">
                   {[
-                    ["Presale", "30%", "6,000,000"],
+                    ["Private allocation", "30%", "6,000,000"],
                     ["Liquidity", "25%", "5,000,000"],
                     ["Community", "10%", "2,000,000"],
                     ["Treasury", "10%", "2,000,000"],
                     ["Team", "6%", "1,200,000"],
                     ["Marketing", "6%", "1,200,000"],
                     ["Ecosystem", "6%", "1,200,000"],
-                    ["CEX listings", "4%", "800,000"],
-                    ["Legal / audits", "3%", "600,000"],
+                    ["Exchange listings", "4%", "800,000"],
+                    ["Legal and audits", "3%", "600,000"],
                   ].map(([name, pct, amt]) => (
                     <div
                       key={name}
@@ -259,7 +268,7 @@ export default function HomePage() {
                 <div className="space-y-6">
                   <div>
                     <div className="text-xs text-white/40 uppercase tracking-wider mb-2">
-                      Total Supply
+                      Total supply
                     </div>
                     <div className="text-3xl sm:text-4xl font-semibold tracking-tight">
                       20,000,000
@@ -267,7 +276,7 @@ export default function HomePage() {
                   </div>
                   <div>
                     <div className="text-xs text-white/40 uppercase tracking-wider mb-2">
-                      Presale Price
+                      Allocation price
                     </div>
                     <div className="text-3xl sm:text-4xl font-semibold tracking-tight text-orange-500">
                       $1.00
@@ -275,7 +284,7 @@ export default function HomePage() {
                   </div>
                   <div>
                     <div className="text-xs text-white/40 uppercase tracking-wider mb-2">
-                      Presale Allocation
+                      Private allocation
                     </div>
                     <div className="text-xl sm:text-2xl font-semibold tracking-tight">
                       6,000,000 $MRSC
@@ -288,18 +297,18 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ROADMAP */}
+      {/* SEQUENCE / ROADMAP */}
       <section
-        id="roadmap"
+        id="sequence"
         className="py-20 sm:py-32 px-4 sm:px-6 border-t border-white/5"
       >
         <div className="max-w-5xl mx-auto">
           <div className="max-w-2xl mb-12">
             <div className="text-xs text-orange-500 uppercase tracking-wider mb-3">
-              Roadmap
+              Sequence
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight">
-              The path forward
+              The path, stated plainly.
             </h2>
           </div>
 
@@ -308,37 +317,37 @@ export default function HomePage() {
               {[
                 {
                   phase: "Phase 1",
-                  time: "Now to Dec 31",
-                  title: "Presale",
-                  desc: "Early allocation at $1.00. Community build. Audits begin.",
+                  time: "Present to Dec 31",
+                  title: "Private allocation",
+                  desc: "six million tokens offered at $1.00. Community formation and security preparation in parallel.",
                   status: "active",
                 },
                 {
                   phase: "Phase 2",
                   time: "Jan 1",
-                  title: "Launch",
-                  desc: "Solana listing. Withdrawals open. DEX trading begins.",
+                  title: "Token generation",
+                  desc: "Supply is issued on Solana. Withdrawals activate. Secondary market access opens for holders.",
                   status: "upcoming",
                 },
                 {
                   phase: "Phase 3",
                   time: "Q1 to Q2",
-                  title: "Growth",
-                  desc: "CEX listings. Staking rewards. Community programs.",
+                  title: "Distribution and depth",
+                  desc: "Centralized exchange listings, staking mechanisms, and targeted incentive programs.",
                   status: "upcoming",
                 },
                 {
                   phase: "Phase 4",
                   time: "Q3 to Q4",
                   title: "Ecosystem",
-                  desc: "MarsChain testnet. Grants for builders. dApps launch.",
+                  desc: "Developer grants, protocol integrations, and initial application layer deployment.",
                   status: "upcoming",
                 },
                 {
                   phase: "Phase 5",
                   time: "2027 and beyond",
-                  title: "MarsChain L1",
-                  desc: "Mainnet launch. Full Layer-1 chain with validators and native apps.",
+                  title: "Layer-1 mainnet",
+                  desc: "Independent consensus layer. Validator network. Full sovereignty from host chains.",
                   status: "upcoming",
                 },
               ].map((step, i) => (
@@ -369,14 +378,14 @@ export default function HomePage() {
                       {step.status === "active" && (
                         <div className="flex items-center gap-1.5 text-xs text-orange-500">
                           <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse" />
-                          Live
+                          Active
                         </div>
                       )}
                     </div>
                     <div className="text-base sm:text-lg font-semibold mt-2">
                       {step.title}
                     </div>
-                    <div className="text-white/50 text-xs sm:text-sm mt-1">
+                    <div className="text-white/50 text-xs sm:text-sm mt-1 leading-relaxed">
                       {step.desc}
                     </div>
                   </div>
@@ -391,70 +400,71 @@ export default function HomePage() {
       <section className="py-20 sm:py-32 px-4 sm:px-6 border-t border-white/5">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl sm:text-4xl md:text-6xl font-semibold tracking-tight leading-tight">
-            The next frontier
+            The allocation closes
             <br />
             <span className="bg-gradient-to-r from-orange-500 to-amber-300 bg-clip-text text-transparent">
-              starts here.
+              on December 31.
             </span>
           </h2>
           <p className="text-white/50 mt-6 text-base sm:text-lg">
-            Early allocation closes December 31.
+            six million tokens. One dollar. One launch date.
           </p>
           <Link
             href="/register"
             className="inline-block mt-10 px-8 py-4 rounded-xl bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-500 hover:to-orange-400 text-white font-semibold transition shadow-lg shadow-orange-500/20"
           >
-            Buy $MRSC Now →
+            Request Allocation
           </Link>
         </div>
       </section>
 
-      {/* FAQ */}
+      {/* QUESTIONS / FAQ */}
       <section
-        id="faq"
+        id="questions"
         className="py-20 sm:py-32 px-4 sm:px-6 border-t border-white/5"
       >
         <div className="max-w-3xl mx-auto">
           <div className="mb-12">
             <div className="text-xs text-orange-500 uppercase tracking-wider mb-3">
-              FAQ
+              Questions
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight">
-              Questions
+              Reasonable questions, answered.
             </h2>
           </div>
 
           <SectionReveal>
             <div className="space-y-3">
               {[
-                [
-                  "What is MarsChain?",
-                  "MarsChain is a new blockchain project with a fixed supply of 20 million tokens. It launches on Solana in January, and from there the team is building toward its own Layer-1 chain. The goal is simple: take what Bitcoin started and push it further.",
-                ],
-                [
-                  "How is this different from Bitcoin?",
-                  "Bitcoin proved that decentralized money works. But it was built for a world that has changed. MarsChain is designed for speed, scale, and smart contracts. It is not trying to sit beside Bitcoin. It is trying to go beyond it.",
-                ],
-                [
-                  "When can I withdraw or sell my tokens?",
-                  "Your tokens stay locked until launch day on January 1. Once launch happens, you can sell your $MRSC on any Solana exchange or wallet that lists it.",
-                ],
-                [
-                  "What happens if the presale does not sell out?",
-                  "Any unsold tokens are burned permanently. This reduces the total supply, which makes the remaining tokens more scarce. The launch still happens on January 1 no matter what.",
-                ],
-                [
-                  "Do I need to complete KYC?",
-                  "No. There is no KYC to participate in the presale. All you need is an email address to create an account.",
-                ],
-                [
-                  "Which cryptocurrencies can I use to buy?",
-                  "You can pay with Bitcoin (BTC), USDT on the Tron network (TRC-20), or Solana (SOL). Each one has its own deposit address shown at checkout. Make sure you send the right coin on the right network.",
-                ],
-                [
-                  "What is the total supply of $MRSC?",
-                  "The total supply is 20,000,000 $MRSC and it will never change. There is no inflation, no extra minting, and no hidden reserve. What you see is what exists.",
-                ],
+                  
+              [
+                "What is MarsChain, precisely?",
+                "MarsChain is a fixed-supply monetary asset paired with a programmatic settlement environment. The asset, twenty million $MRSC, immutably issued, launches on Solana in January 2027. The settlement environment is a longer-term objective: an independent Layer-1, sovereign in its consensus, purpose-built for a decade of demand that current networks were not designed to meet. The supply does not change. The architecture will.",
+              ],
+              [
+                "Why does this need to exist alongside Bitcoin?",
+                "Bitcoin solved one problem completely: how to make digital scarcity credible. It did not attempt the harder problem that follows. Coupling that scarcity with programmable settlement at global scale. MarsChain exists because the second problem is unsolved, not because the first was solved poorly.",
+              ],
+              [
+                "When is $MRSC transferable?",
+                "Not before January 1, 2027. Until that date, holdings exist on our ledger and cannot leave it. At launch, the constraint dissolves. Every holder can withdraw to any Solana address and access any venue that supports the asset.",
+              ],
+              [
+                "What happens to unsold tokens?",
+                "They are destroyed. Not held, not reserved, not repurposed. Burned, and provably so. The consequence is that the surviving supply becomes proportionally scarcer. The launch date does not move.",
+              ],
+              [
+                "Is identity verification required?",
+                "No. An email address is the only requirement. This is a deliberate position, not a shortcut. It reflects the project's current structure and the kind of participant it is designed for.",
+              ],
+              [
+                "Which assets are accepted?",
+                "Three. Bitcoin, USDT on the Tron network, and Solana. Each has a dedicated deposit address displayed at the point of purchase. Assets must be sent on the network they were assigned to. The protocol cannot recover funds sent otherwise.",
+              ],
+              [
+                "What is the total supply of $MRSC?",
+                "Twenty million. Immutably issued at genesis. No inflation schedule. No discretionary issuance. No treasury capable of minting more. The supply was determined once and will remain as it was determined.",
+              ],
               ].map(([q, a]) => (
                 <details
                   key={q}
@@ -504,7 +514,9 @@ export default function HomePage() {
               </div>
               <div>
                 <div className="text-sm font-semibold">MarsChain</div>
-                <div className="text-xs text-white/40">Beyond Bitcoin</div>
+                <div className="text-xs text-white/40">
+                  Settlement for what comes next
+                </div>
               </div>
             </div>
 
@@ -521,10 +533,12 @@ export default function HomePage() {
             </div>
           </div>
 
-          
+          <p className="text-center text-white/20 mt-10 text-xs leading-relaxed max-w-2xl mx-auto">
+            
+          </p>
 
           <p className="text-center text-white/20 mt-6 text-xs">
-            © {new Date().getFullYear()} MarsChain · Beyond Bitcoin
+            © {new Date().getFullYear()} MarsChain
           </p>
         </div>
       </footer>
