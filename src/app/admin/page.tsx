@@ -150,7 +150,7 @@ export default function AdminDashboard() {
         )}
 
         {/* Quick nav */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 fade-up fade-up-delay-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 fade-up fade-up-delay-4">
           <Link
             href="/admin/users"
             className="glass rounded-2xl p-6 hover:border-orange-500/40 transition group"
@@ -172,6 +172,18 @@ export default function AdminDashboard() {
             </div>
             <div className="text-xs text-white/40">
               Confirm or reject pending payments
+            </div>
+          </Link>
+
+          <Link
+            href="/admin/invites"
+            className="glass rounded-2xl p-6 hover:border-orange-500/40 transition group"
+          >
+            <div className="text-base font-semibold mb-1 group-hover:text-orange-500 transition">
+              Invite Codes
+            </div>
+            <div className="text-xs text-white/40">
+              Generate and manage access codes
             </div>
           </Link>
 

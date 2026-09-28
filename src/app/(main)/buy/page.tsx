@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
-import UserNav from "@/components/UserNav";
 
 type Coin = "BTC" | "USDT" | "SOL";
 
@@ -14,19 +13,19 @@ const COINS: Record<
 > = {
   BTC: {
     label: "Bitcoin",
-    network: "Bitcoin Network",
+    network: "Bitcoin network",
     color: "#f7931a",
     icon: "₿",
   },
   USDT: {
     label: "USDT",
-    network: "Tron (TRC-20)",
+    network: "Tron · TRC-20",
     color: "#26a17b",
     icon: "₮",
   },
   SOL: {
     label: "Solana",
-    network: "Solana Network",
+    network: "Solana network",
     color: "#9945ff",
     icon: "◎",
   },
@@ -40,6 +39,7 @@ export default function BuyPage() {
 
   const [amount, setAmount] = useState<string>("");
   const [selected, setSelected] = useState<Coin>("BTC");
+  const [balance, setBalance] = useState<number>(0);
   const [checking, setChecking] = useState(true);
 
   useEffect(() => {
@@ -52,10 +52,9 @@ export default function BuyPage() {
         return;
       }
 
-      // Redirect admins to /admin
       const { data: profile } = await supabase
         .from("profiles")
-        .select("is_admin")
+        .select("is_admin, balance_mrsc")
         .eq("id", user.id)
         .single();
 
@@ -64,6 +63,7 @@ export default function BuyPage() {
         return;
       }
 
+      setBalance(Number(profile?.balance_mrsc || 0));
       setChecking(false);
     }
     checkAuth();
@@ -88,78 +88,125 @@ export default function BuyPage() {
   return (
     <main className="min-h-screen px-4 sm:px-6 py-8 sm:py-12">
       <div className="max-w-xl mx-auto">
-        <UserNav
-          subtitle="Buy $MRSC"
-          backHref="/dashboard"
-          backLabel="← Dashboard"
-        />
-
-        {/* Heading */}
-        <div className="mb-8 fade-up fade-up-delay-1">
-          <div className="text-xs text-white/40 uppercase tracking-wider mb-3">
-            Step 1 of 2
-          </div>
-          <h1 className="text-2xl font-semibold tracking-tight">
-            Choose your amount
-          </h1>
-          <p className="text-white/40 text-sm mt-2">$1.00 per $MRSC</p>
+        {/* ============ TOP BAR ============ */}
+        <div className="flex items-center justify-between mb-10 fade-up">
+          <Link href="/dashboard" className="flex items-center gap-3 group">
+            <div className="logo-mark" style={{ width: 36, height: 36 }}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M12 2L3 7v10l9 5 9-5V7l-9-5z"
+                  stroke="white"
+                  strokeWidth="1.5"
+                  strokeLinejoin="round"
+                />
+                <circle cx="12" cy="12" r="3" fill="white" />
+              </svg>
+            </div>
+            <div>
+              <div className="text-sm font-semibold group-hover:text-orange-500 transition">
+                MarsChain
+              </div>
+              <div className="text-xs text-white/40">Buy $MRSC</div>
+            </div>
+          </Link>
+          <Link
+            href="/dashboard"
+            className="mono-label hover:text-orange-500 transition"
+          >
+            ← Wallet
+          </Link>
         </div>
 
-        {/* Amount input */}
+        {/* ============ HEADING ============ */}
+        <div className="mb-8 fade-up fade-up-delay-1">
+          <div className="flex items-center justify-between mb-3">
+            <span className="mono-label">Step 1 of 2</span>
+            <span className="mono-label">$1.00 per $MRSC</span>
+          </div>
+          <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight">
+            Purchase $MRSC
+          </h1>
+          <p className="text-white/40 text-sm mt-3">
+            Enter how much you want to buy, then choose how to pay.
+          </p>
+        </div>
+
+        {/* ============ BALANCE PANEL ============ */}
         <div className="glass rounded-2xl p-6 mb-4 fade-up fade-up-delay-2">
-          <label className="block text-xs font-medium mb-3 text-white/60 uppercase tracking-wider">
-            Amount
-          </label>
-          <div className="relative">
+          <div className="flex items-center justify-between">
+            <div>
+              <span className="mono-label">Current balance</span>
+              <div className="text-2xl sm:text-3xl font-semibold tabular-nums tracking-tight mt-2">
+                {balance.toLocaleString()}
+                <span className="text-orange-500 text-base sm:text-lg ml-2">
+                  $MRSC
+                </span>
+              </div>
+            </div>
+            <div className="text-right">
+              <span className="mono-label">Value</span>
+              <div className="text-sm font-mono mt-2">
+                $
+                {balance.toLocaleString(undefined, {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ============ AMOUNT PANEL ============ */}
+        <div className="glass rounded-3xl p-6 sm:p-7 mb-4 fade-up fade-up-delay-2">
+          <span className="mono-label">Purchase amount</span>
+
+          <div className="relative mt-4">
             <input
               type="number"
               min="1"
               step="1"
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
-              className="input-field text-xl sm:text-2xl font-semibold pr-20"
+              className="w-full bg-transparent border-0 text-4xl sm:text-5xl font-semibold tabular-nums tracking-tight outline-none placeholder:text-white/15 pr-24"
               placeholder="0"
             />
-            <div className="absolute right-4 top-1/2 -translate-y-1/2 text-white/40 text-sm">
+            <div className="absolute right-0 top-1/2 -translate-y-1/2 text-white/40 text-base font-mono">
               $MRSC
             </div>
           </div>
 
-          {/* Quick amounts */}
-          <div className="flex flex-wrap gap-2 mt-4">
+          <div className="flex flex-wrap gap-2 mt-6">
             {[100, 500, 1000, 5000, 10000].map((n) => (
               <button
                 key={n}
                 onClick={() => setAmount(String(n))}
-                className="px-3 py-1.5 text-xs rounded-lg border border-white/10 hover:border-orange-500/50 hover:text-orange-500 transition"
+                className="px-3 py-1.5 text-xs mono-label rounded-lg border border-white/10 hover:border-orange-500/50 hover:text-orange-500 transition"
               >
                 {n.toLocaleString()}
               </button>
             ))}
           </div>
 
-          {/* Total */}
           {numericAmount > 0 && (
-            <div className="mt-5 pt-5 border-t border-white/10 flex items-center justify-between">
-              <div className="text-sm text-white/40">You pay</div>
-              <div className="text-xl font-semibold">
+            <div className="mt-6 pt-5 border-t border-white/5 flex items-center justify-between">
+              <span className="mono-label">You pay</span>
+              <span className="text-2xl font-semibold tabular-nums">
                 $
                 {totalUSD.toLocaleString(undefined, {
                   minimumFractionDigits: 2,
                   maximumFractionDigits: 2,
                 })}{" "}
                 <span className="text-white/40 text-sm font-normal">USD</span>
-              </div>
+              </span>
             </div>
           )}
         </div>
 
-        {/* Coin selector */}
+        {/* ============ PAYMENT METHOD ============ */}
         <div className="glass rounded-2xl p-6 mb-4 fade-up fade-up-delay-3">
-          <label className="block text-xs font-medium mb-4 text-white/60 uppercase tracking-wider">
-            Payment method
-          </label>
-          <div className="space-y-2">
+          <span className="mono-label">Payment method</span>
+
+          <div className="space-y-2 mt-4">
             {(Object.keys(COINS) as Coin[]).map((key) => {
               const c = COINS[key];
               const isActive = selected === key;
@@ -167,14 +214,14 @@ export default function BuyPage() {
                 <button
                   key={key}
                   onClick={() => setSelected(key)}
-                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl border transition text-left ${
+                  className={`w-full flex items-center gap-3 px-4 py-3.5 rounded-xl border transition text-left ${
                     isActive
                       ? "border-orange-500/60 bg-orange-500/5"
                       : "border-white/10 hover:border-white/20"
                   }`}
                 >
                   <div
-                    className="w-9 h-9 rounded-lg flex items-center justify-center text-lg font-semibold shrink-0"
+                    className="w-10 h-10 rounded-lg flex items-center justify-center text-lg font-semibold shrink-0"
                     style={{
                       background: `${c.color}20`,
                       color: c.color,
@@ -182,12 +229,12 @@ export default function BuyPage() {
                   >
                     {c.icon}
                   </div>
-                  <div className="flex-1">
+                  <div className="flex-1 min-w-0">
                     <div className="text-sm font-semibold">{c.label}</div>
-                    <div className="text-xs text-white/40">{c.network}</div>
+                    <div className="mono-label mt-0.5">{c.network}</div>
                   </div>
                   <div
-                    className={`w-4 h-4 rounded-full border-2 flex items-center justify-center transition ${
+                    className={`w-4 h-4 rounded-full border-2 flex items-center justify-center transition shrink-0 ${
                       isActive ? "border-orange-500" : "border-white/20"
                     }`}
                   >
@@ -201,19 +248,24 @@ export default function BuyPage() {
           </div>
         </div>
 
-        {/* Continue */}
+        {/* ============ CONTINUE ============ */}
         <button
           onClick={handleContinue}
           disabled={numericAmount < 1}
           className="btn-primary fade-up fade-up-delay-4"
         >
-          Continue to payment →
+          {numericAmount < 1
+            ? "Enter an amount"
+            : `Continue with ${COINS[selected].label} →`}
         </button>
 
-        {/* Footer */}
-        <p className="text-center text-white/20 mt-12 text-xs">
-          © {new Date().getFullYear()} MarsChain · Beyond Bitcoin
-        </p>
+        {/* ============ FOOTER ============ */}
+        <div className="flex items-center justify-between mt-10 fade-up fade-up-delay-4">
+          <span className="mono-label">Secure checkout</span>
+          <span className="mono-label">
+            © {new Date().getFullYear()}
+          </span>
+        </div>
       </div>
     </main>
   );

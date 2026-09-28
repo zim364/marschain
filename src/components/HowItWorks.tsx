@@ -4,8 +4,8 @@ export default function HowItWorks() {
   const steps = [
     {
       number: "01",
-      title: "Create your account",
-      desc: "Sign up with just an email address. No KYC, no wallet setup required to get started.",
+      title: "Enter your invite code",
+      desc: "Access is by invitation. Enter the code you received to unlock registration.",
     },
     {
       number: "02",
